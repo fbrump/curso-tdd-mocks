@@ -7,9 +7,15 @@ namespace Leiloes.Servico
     using Leiloes.Infra;
     using Leiloes.Dominio;
 
+    /// <summary>
+    /// CLasse that container all business of the fineshed of auctions.
+    /// </summary>
     public class EncerradorDeLeilao
     {
-        private LeilaoDaoFalso dao;
+        /// <summary>
+        /// Variable for repository of auctions.
+        /// </summary>
+        private RepositorioDeLeiloes dao;
 
         /// <summary>
         /// Total
@@ -20,7 +26,7 @@ namespace Leiloes.Servico
         /// <summary>
         /// Constructor for class.
         /// </summary>
-        public EncerradorDeLeilao(LeilaoDaoFalso dao)
+        public EncerradorDeLeilao(RepositorioDeLeiloes dao)
         {
             Total = 0;
             this.dao = dao;

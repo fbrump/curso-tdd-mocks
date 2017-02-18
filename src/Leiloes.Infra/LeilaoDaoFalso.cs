@@ -6,15 +6,23 @@ namespace Leiloes.Infra
     using System.Collections.Generic;
     using Leiloes.Dominio;
 
-    public class LeilaoDaoFalso
+    /// <summary>
+    /// Class that implement all methods for auctions repository (DAL)
+    /// </summary>
+    public class LeilaoDaoFalso : RepositorioDeLeiloes
     {
+        /// <summary>
+        /// database fake
+        /// </summary>
         private static List<Leilao> leiloes = new List<Leilao>();
         
+        /// <inheritdoc/>
         public void Salva(Leilao leilao)
         {
             leiloes.Add(leilao);
         }
 
+        /// <inheritdoc/>
         public virtual List<Leilao> Encerrados()
         {
             List<Leilao> filtrados = new List<Leilao>();
@@ -26,6 +34,7 @@ namespace Leiloes.Infra
             return filtrados;
         }
 
+        /// <inheritdoc/>
         public virtual List<Leilao> Correntes()
         {
             List<Leilao> correntes = new List<Leilao>();
@@ -37,6 +46,7 @@ namespace Leiloes.Infra
             return correntes;
         }
 
+        /// <inheritdoc/>
         public virtual void Atualiza(Leilao leilao) { }
     }
 }
