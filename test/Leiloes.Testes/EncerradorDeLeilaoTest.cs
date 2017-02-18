@@ -72,6 +72,22 @@ namespace Leiloes.Testes
             Assert.False(leilao1.encerrado);
             Assert.False(leilao2.encerrado);
         }
+
+        [Fact]
+        public void Should_return_nothing_when_dont_have_auction()
+        {
+            //Given
+            var dao = new Mock<LeilaoDaoFalso>();
+
+            dao.Setup(d => d.Correntes())
+                .Returns(new List<Leilao>());
+            //When
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            encerrador.Encerra();
+            
+            //Then
+            Assert.Equal(0, encerrador.Total);
+        }
         
     }
 }
