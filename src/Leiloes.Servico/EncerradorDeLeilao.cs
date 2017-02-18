@@ -6,6 +6,7 @@ namespace Leiloes.Servico
     using System.Collections.Generic;
     using Leiloes.Infra;
     using Leiloes.Dominio;
+
     public class EncerradorDeLeilao
     {
         /// <summary>
@@ -33,7 +34,7 @@ namespace Leiloes.Servico
             foreach (var l in todosLeiloesCorrentes)
             {
                 if (ComecouSemanaPassada(l)){
-                    l.Encerra();
+                    l.encerra();
                     Total++;
                     dao.Atualiza(l);
                 }
@@ -48,7 +49,7 @@ namespace Leiloes.Servico
         /// <returns>Starting last week true; else false</returns>
         private bool ComecouSemanaPassada(Leilao leilao)
         {
-            return DiasEntre(leilao.Data, DateTime.Now) >= 7;
+            return DiasEntre(leilao.data, DateTime.Now) >= 7;
         }
 
         /// <summary>

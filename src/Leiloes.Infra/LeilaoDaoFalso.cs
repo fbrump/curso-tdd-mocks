@@ -10,12 +10,12 @@ namespace Leiloes.Infra
     {
         private static List<Leilao> leiloes = new List<Leilao>();
         
-        public void salva(Leilao leilao)
+        public void Salva(Leilao leilao)
         {
             leiloes.Add(leilao);
         }
 
-        public virtual List<Leilao> encerrados()
+        public virtual List<Leilao> Encerrados()
         {
             List<Leilao> filtrados = new List<Leilao>();
             foreach (var l in leiloes)
@@ -26,7 +26,7 @@ namespace Leiloes.Infra
             return filtrados;
         }
 
-        public virtual List<Leilao> correntes()
+        public virtual List<Leilao> Correntes()
         {
             List<Leilao> correntes = new List<Leilao>();
             foreach (var l in leiloes)
@@ -37,6 +37,6 @@ namespace Leiloes.Infra
             return correntes;
         }
 
-        public virtual void atualiza(Leilao leilao) { }
+        public virtual void Atualiza(Leilao leilao) { }
     }
 }
