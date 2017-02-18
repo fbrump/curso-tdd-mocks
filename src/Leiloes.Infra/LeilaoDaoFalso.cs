@@ -17,7 +17,7 @@ namespace Leiloes.Infra
         private static List<Leilao> leiloes = new List<Leilao>();
         
         /// <inheritdoc/>
-        public void Salva(Leilao leilao)
+        public virtual void Salva(Leilao leilao)
         {
             leiloes.Add(leilao);
         }
