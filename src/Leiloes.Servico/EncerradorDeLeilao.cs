@@ -54,11 +54,12 @@ namespace Leiloes.Servico
                         l.encerra();
                         Total++;
                         dao.Atualiza(l);
+                        carteiro.envia(l);
                     }
                     catch (Exception e)
                     {
                         // Save one log
-                        Console.WriteLine(e);
+                        //Console.WriteLine(e);
                         //throw;
                     }
                 }
