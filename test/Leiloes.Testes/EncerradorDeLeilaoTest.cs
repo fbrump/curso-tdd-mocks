@@ -263,8 +263,9 @@ namespace Leiloes.Testes
             encerrador.Encerra();
 
             //Then
-            carteiro.Verify(c => c.envia(leilao1), Times.Never());
-            carteiro.Verify(c => c.envia(leilao2), Times.Never());
+            carteiro.Verify(c => c.envia(It.IsAny<Leilao>()), Times.Never());
+            // carteiro.Verify(c => c.envia(leilao1), Times.Never());
+            // carteiro.Verify(c => c.envia(leilao2), Times.Never());
         }
     }
 }
