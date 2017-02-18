@@ -25,10 +25,14 @@ namespace Leiloes.Testes
             Leilao leilao2 = new Leilao("Playstation");
             leilao2.naData(diaDaSemanaPassada);
 
-            LeilaoDaoFalso dao = new LeilaoDaoFalso();
-            dao.Salva(leilao1);
-            dao.Salva(leilao2);
+            List<Leilao> ListaDeLeiloes = new List<Leilao>();
+            ListaDeLeiloes.Add(leilao1);
+            ListaDeLeiloes.Add(leilao2);
 
+            var dao = new Mock<LeilaoDaoFalso>();
+
+            dao.Setup(d => d.Correntes())
+                .Returns(ListaDeLeiloes);
             //When
             EncerradorDeLeilao encerrador = new EncerradorDeLeilao();
             encerrador.Encerra();
