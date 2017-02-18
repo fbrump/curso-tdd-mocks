@@ -228,6 +228,43 @@ namespace Leiloes.Testes
             dao.Verify(d => d.Atualiza(leilao1), Times.Once, "Error when verifica if the second auction was method update used");
             dao.Verify(d => d.Atualiza(leilao2), Times.Once, "Error when verifica if the second auction was method update used");
             carteiro.Verify(c => c.envia(leilao2), Times.Once());
-        }       
+        }
+
+        [Fact]
+        public void Should_throw_exceptions_for_all_throws_in_auction()
+        {
+            //Given
+            DateTime diaDaSemanaPassada = new DateTime(1999, 05, 05);
+            
+            Leilao leilao1 = new Leilao("Tv de plasma");
+            leilao1.naData(diaDaSemanaPassada);
+
+            Leilao leilao2 = new Leilao("Playstation");
+            leilao2.naData(diaDaSemanaPassada);
+
+            List<Leilao> ListaDeLeiloes = new List<Leilao>();
+            ListaDeLeiloes.Add(leilao1);
+            ListaDeLeiloes.Add(leilao2);
+
+            // MOCK
+            var dao = new Mock<RepositorioDeLeiloes>();
+
+            dao.Setup(d => d.Correntes())
+                .Returns(ListaDeLeiloes);
+            dao.Setup(c => c.Atualiza(leilao1))
+                .Throws(new Exception());
+            dao.Setup(c => c.Atualiza(leilao2))
+                .Throws(new Exception());
+            
+            var carteiro = new Mock<Carteiro>();
+            
+            //When
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
+            encerrador.Encerra();
+
+            //Then
+            carteiro.Verify(c => c.envia(leilao1), Times.Never());
+            carteiro.Verify(c => c.envia(leilao2), Times.Never());
+        }
     }
 }
