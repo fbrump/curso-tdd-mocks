@@ -21,7 +21,10 @@
 
         "Microsoft.AspNetCore.TestHost": "1.1.0",
         "Microsoft.DotNet.InternalAbstractions": "1.0.0",
-        "Caelum.Leilao": { "target": "project" }
+        
+        "Leiloes.Dominio": { "target": "project" },
+        "Leiloes.Infra": { "target": "project" },
+        "Leiloes.Servico": { "target": "project" }
   },
   "frameworks": {
     "netcoreapp1.1": {
