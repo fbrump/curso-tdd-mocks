@@ -7,6 +7,7 @@ namespace Leiloes.Testes
     using Xunit;
     using Leiloes.Dominio;
     using Leiloes.Servico;
+    using Leiloes.Infra;
 
     public class EncerradorDeLeilaoTest
     {
@@ -16,11 +17,16 @@ namespace Leiloes.Testes
             //Given
             DateTime diaDaSemanaPassada = new DateTime(1999, 05, 05);
             
+            
             Leilao leilao1 = new Leilao("Tv de plasma");
             leilao1.naData(diaDaSemanaPassada);
 
             Leilao leilao2 = new Leilao("Playstation");
             leilao2.naData(diaDaSemanaPassada);
+
+            LeilaoDaoFalso dao = new LeilaoDaoFalso();
+            dao.Salva(leilao1);
+            dao.Salva(leilao2);
 
             //When
             EncerradorDeLeilao encerrador = new EncerradorDeLeilao();
@@ -28,8 +34,8 @@ namespace Leiloes.Testes
             
             //Then
             Assert.Equal(2, encerrador.Total);
-            Assert.True(leilao1.encerra());
-            Assert.True(leilao2.encerra());
+            Assert.True(leilao1.encerrado);
+            Assert.True(leilao2.encerrado);
         }
         
     }
