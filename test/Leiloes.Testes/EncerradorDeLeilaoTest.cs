@@ -29,7 +29,7 @@ namespace Leiloes.Testes
             ListaDeLeiloes.Add(leilao1);
             ListaDeLeiloes.Add(leilao2);
 
-            var dao = new Mock<LeilaoDaoFalso>();
+            var dao = new Mock<RepositorioDeLeiloes>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
@@ -59,7 +59,7 @@ namespace Leiloes.Testes
             ListaDeLeiloes.Add(leilao1);
             ListaDeLeiloes.Add(leilao2);
 
-            var dao = new Mock<LeilaoDaoFalso>();
+            var dao = new Mock<RepositorioDeLeiloes>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
@@ -77,7 +77,7 @@ namespace Leiloes.Testes
         public void Should_return_nothing_when_dont_have_auction()
         {
             //Given
-            var dao = new Mock<LeilaoDaoFalso>();
+            var dao = new Mock<RepositorioDeLeiloes>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(new List<Leilao>());
