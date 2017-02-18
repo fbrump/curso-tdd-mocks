@@ -34,7 +34,7 @@ namespace Leiloes.Testes
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao();
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
             encerrador.Encerra();
             
             //Then

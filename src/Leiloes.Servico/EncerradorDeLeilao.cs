@@ -9,6 +9,8 @@ namespace Leiloes.Servico
 
     public class EncerradorDeLeilao
     {
+        private LeilaoDaoFalso dao;
+
         /// <summary>
         /// Total
         /// </summary>
@@ -18,9 +20,10 @@ namespace Leiloes.Servico
         /// <summary>
         /// Constructor for class.
         /// </summary>
-        public EncerradorDeLeilao()
+        public EncerradorDeLeilao(LeilaoDaoFalso dao)
         {
             Total = 0;
+            this.dao = dao;
         }
 
         /// <summary>
@@ -28,7 +31,6 @@ namespace Leiloes.Servico
         /// </summary>
         public void Encerra()
         {
-            LeilaoDaoFalso dao = new LeilaoDaoFalso();
             List<Leilao> todosLeiloesCorrentes = dao.Correntes();
 
             foreach (var l in todosLeiloesCorrentes)
