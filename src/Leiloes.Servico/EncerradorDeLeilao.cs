@@ -49,9 +49,18 @@ namespace Leiloes.Servico
             foreach (var l in todosLeiloesCorrentes)
             {
                 if (ComecouSemanaPassada(l)){
-                    l.encerra();
-                    Total++;
-                    dao.Atualiza(l);
+                    try
+                    {
+                        l.encerra();
+                        Total++;
+                        dao.Atualiza(l);
+                    }
+                    catch (Exception e)
+                    {
+                        // Save one log
+                        Console.WriteLine(e);
+                        //throw;
+                    }
                 }
             }
 
