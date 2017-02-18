@@ -1,6 +1,7 @@
 {
   "version": "1.0.0-*",
   "testRunner": "xunit",
+
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
@@ -11,6 +12,7 @@
   "dependencies": {
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
         "xunit": "2.2.0-beta5-build3474",
+        "Moq": "4.6.38-alpha",
         
         "System.Linq": "4.3.0",
         "System.Runtime": "4.3.0",

@@ -5,6 +5,7 @@ namespace Leiloes.Testes
     using System.Collections;
     using System.Collections.Generic;
     using Xunit;
+    using Moq;
     using Leiloes.Dominio;
     using Leiloes.Servico;
     using Leiloes.Infra;
