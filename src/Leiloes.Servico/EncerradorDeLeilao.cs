@@ -16,6 +16,10 @@ namespace Leiloes.Servico
         /// Variable for repository of auctions.
         /// </summary>
         private RepositorioDeLeiloes dao;
+        /// <summary>
+        /// Variable for mail service.
+        /// </summary>
+        private Carteiro carteiro;
 
         /// <summary>
         /// Total
@@ -25,11 +29,14 @@ namespace Leiloes.Servico
 
         /// <summary>
         /// Constructor for class.
+        /// <paramref name="dao">Repository will work in service.</paramref>
+        /// <paramref name="carteiro">Mail serivce will used in service.</paramref>
         /// </summary>
-        public EncerradorDeLeilao(RepositorioDeLeiloes dao)
+        public EncerradorDeLeilao(RepositorioDeLeiloes dao, Carteiro carteiro)
         {
             Total = 0;
             this.dao = dao;
+            this.carteiro = carteiro;
         }
 
         /// <summary>

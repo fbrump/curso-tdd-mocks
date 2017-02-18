@@ -30,11 +30,12 @@ namespace Leiloes.Testes
             ListaDeLeiloes.Add(leilao2);
 
             var dao = new Mock<RepositorioDeLeiloes>();
+            var carteiro = new Mock<Carteiro>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
             encerrador.Encerra();
             
             //Then
@@ -60,11 +61,12 @@ namespace Leiloes.Testes
             ListaDeLeiloes.Add(leilao2);
 
             var dao = new Mock<RepositorioDeLeiloes>();
+            var carteiro = new Mock<Carteiro>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
             encerrador.Encerra();
             
             //Then
@@ -78,11 +80,12 @@ namespace Leiloes.Testes
         {
             //Given
             var dao = new Mock<RepositorioDeLeiloes>();
+            var carteiro = new Mock<Carteiro>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(new List<Leilao>());
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
             encerrador.Encerra();
             
             //Then
@@ -106,12 +109,13 @@ namespace Leiloes.Testes
             ListaDeLeiloes.Add(leilao2);
 
             var dao = new Mock<RepositorioDeLeiloes>();
+            var carteiro = new Mock<Carteiro>();
 
             dao.Setup(d => d.Correntes())
                 .Returns(ListaDeLeiloes);
             
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
             encerrador.Encerra();
 
             dao.Verify(d => d.Atualiza(leilao1), Times.Once, "Error when verifica if the first auction was method update used");
@@ -136,10 +140,11 @@ namespace Leiloes.Testes
             listaRetorno.Add(leilao1);
 
             var dao = new Mock<LeilaoDaoFalso>();
+            var carteiro = new Mock<Carteiro>();
             dao.Setup(m => m.Correntes()).Returns(listaRetorno);
             
             //When
-            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object);
+            EncerradorDeLeilao encerrador = new EncerradorDeLeilao(dao.Object, carteiro.Object);
             encerrador.Encerra();
 
             // verify aqui !
