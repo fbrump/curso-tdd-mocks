@@ -41,12 +41,13 @@ namespace Leiloes.Testes
             pagaemntoDao.Setup(p => p.Salvar(It.IsAny<Pagamento>()))
                 .Callback<Pagamento>(r => pagemntoCapturado = r);
             
-            GeradorDePagamento gerador = new GeradorDePagamento(leilaoDao.Object, avaliador.Object, pagaemntoDao.Object);
+            GeradorDePagamento gerador = new GeradorDePagamento(leilaoDao.Object, new Avaliador(), pagaemntoDao.Object);
             gerador.Gera();
 
             //Then
             Assert.NotNull(pagemntoCapturado);
             Assert.Equal(600, pagemntoCapturado.valor);
         }
+
     }
 }
